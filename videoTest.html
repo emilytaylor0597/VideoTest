@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+
+      html, body {
+      margin: 0;
+      padding: 10px;
+      height: 100%;
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #f47936, #26358C, #f47936, #26358C, #f47936, #26358C, #f47936, #26358C);
+      color: white;
+      overflow: hidden;
+    }
+      video {
+        width: 75vw;
+        height: 80vh;
+        display: block;
+        margin: auto;
+        padding-top: 30px;
+      }
+  
+    .title {
+      margin-top: 1vh;
+      font-size: 1.2vw;
+      text-align: center;
+    }
+  </style>
+</head>
+
+   
+
+<body>
+
+    <div class="title"> Test Web Page for Video <br> <br> HLS Video</div>
+
+
+    <!-- <div class="container"> -->
+
+      <video id="video" loop="true" controls="" autoplay="" >
+    <!-- <source src="../HLS-VoD_Intro-to-Chromecast/index.m3u8"> -->
+        <source src="http://10.8.101.69:8008/18ca4f00-e0ea-454a-96ca-8a9afac35b5f_stream/index.m3u8">
+      </video>
+    
+</body>
+</html>

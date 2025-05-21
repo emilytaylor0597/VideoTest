@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+</head>
+<style>
+    body {
+        background-image: url("C:\Users\Emily.Taylor\OneDrive - VITEC\Documents\Web Page\splvash.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<body>
+    <h1>Simple Image Test Page</h1>
+    <video id="video" width="640" height="360" controls autoplay muted>
+        <source src="/Web%20Page/Video%20Test/Astra10.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var video = document.getElementById('video');
+			video.muted = true; // Ensure the video is muted for autoplay
+ 			video.play();
+		});
+	</script>
+
+</body>
+</html>
