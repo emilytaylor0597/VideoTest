@@ -35,10 +35,11 @@
   
 
 <body>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
       <div class="title"> Test Web Page for Video Types <br> <br> Dual 4K Video </div>
         <video id="video" width="960" height="540" loop="true" style="float:left"controls autoplay muted>
-        <source src="https://github.com/emilytaylor0597/VideoTest/tree/main/Astra10.mp4" type="video/mp4">
+        <source src="https://github.com/emilytaylor0597/VideoTest/blob/main/Astra10.mp4" type="video/mp4">
         
 
         </video>
@@ -55,5 +56,20 @@
                 video.play();
             });
         </script> -->
+
+
+
+  <script type="text/javascript">
+      $( document ).ready(function() {
+        $('#videoUrl').on('change', function(e) {
+          var video = $('#video');
+          video.children('source').attr('src', $(this).val());
+          video[0].load();
+          video[0].play();
+        });
+      });
+    </script>
+
+  
 </body>
 </html>
