@@ -20,7 +20,9 @@
     }
 
     async function init() {
-        let blob1 = await fetch("https://videos.pexels.com/video-files/3214527/3214527-uhd_2560_1440_25fps.mp4").then(r => r.blob());
+        let blob1 = await fetch(" https://www.pexels.com/video/spectacular-aerial-fireworks-display-at-night-33287255").then(r => r.blob());
+        
+        
         videoUrl1 = createObjectURL(blob1);
 
         var video = document.createElement('video');
@@ -28,7 +30,7 @@
         video.addEventListener("ended", change);
         video.autoplay = true;
         video.controls = true;
-        video.style = "z-index: 500; width: 986px;top: 0px; display: block; position: absolute;";
+        video.style = "z-index: 500; width: 1280px; height: 720px; top: 0px; display: block; position: absolute;";
         video.src = videoUrl1;
 
         document.getElementsByTagName("body")[0].appendChild(video);
