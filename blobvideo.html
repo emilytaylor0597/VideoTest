@@ -1,48 +1,28 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <style>
-        body {
-            background-color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Blob Video Player</title>
 </head>
-
 <body>
+  <h1>Blob Video Player</h1>
+  <video id="videoPlayer" autoplay muted controls width="800">
+    Your browser does not support the video tag.
+  </video>
 
+  <script>
+    const videoUrl = "https://videos.pexels.com/video-files/33287255/14178954_1920_1080_25fps.mp4";
+
+    fetch(videoUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const videoElement = document.getElementById("videoPlayer");
+        const blobUrl = URL.createObjectURL(blob);
+        videoElement.src = blobUrl;
+      })
+      .catch(error => {
+        console.error("Error loading video:", error);
+      });
+  </script>
 </body>
-
-<script>
-    var videoUrl1;
-
-    function createObjectURL(object) {
-        return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
-    }
-
-    async function init() {
-        let blob1 = await fetch("https://videos.pexels.com/video-files/33287255/14178954_1920_1080_25fps.mp4").then(r => r.blob());
-      //  https://www.pexels.com/download/video/33287255/
-       // https://videos.pexels.com/video-files/33287255"
-// https://videos.pexels.com/video-files/33287255/3214527-uhd_2560_1440_25fps.mp4
-        
-        videoUrl1 = createObjectURL(blob1);
-
-        var video = document.createElement('video');
-
-        video.addEventListener("ended", change);
-        video.autoplay = true;
-        video.controls = true;
-        video.style = "z-index: 500; width: 1280px; height: 720px; top: 0px; display: block; position: absolute;";
-        video.src = videoUrl1;
-
-        document.getElementsByTagName("body")[0].appendChild(video);
-    }
-
-    init();
-
-    function change() {
-        document.getElementsByTagName("video")[0].play();
-    }
-</script>
-
 </html>
