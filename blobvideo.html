@@ -1,36 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Blob Video</title>
-</head>
-<body>
-  <h2>Blob video</h2>
-  <video id="videoPlayer" autoplay muted playsinline width="1280" height="720"></video>
-
-  <script>
-    async function loadVideoFromServer() {
-      try {
-        // Replace with your actual video URL
-        const response = await fetch('https://clarity.cri.com/GetClarity?id=211FanClassics04&displayPosition=1');
-        
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    <style>
+        body {
+            background-color: white;
         }
-        const videoBlob = await response.blob();
-        const videoURL = URL.createObjectURL(videoBlob);
+    </style>
+</head>
 
-        const videoElement = document.getElementById('videoPlayer');
-        videoElement.src = videoURL;
-        videoElement.load();
-        videoElement.play();
-      } catch (error) {
-        console.error('Error loading video:', error);
-      }
+<body>
+
+</body>
+
+<script>
+    var videoUrl1;
+
+    function createObjectURL(object) {
+        return (window.URL) ? window.URL.createObjectURL(object) : window.webkitURL.createObjectURL(object);
     }
 
-    // Load the video when the page loads
-    window.onload = loadVideoFromServer;
-  </script>
-</body>
+    async function init() {
+        let blob1 = await fetch("https://videos.pexels.com/video-files/3214527/3214527-uhd_2560_1440_25fps.mp4").then(r => r.blob());
+        videoUrl1 = createObjectURL(blob1);
+
+        var video = document.createElement('video');
+
+        video.addEventListener("ended", change);
+        video.autoplay = true;
+        video.controls = true;
+        video.style = "z-index: 500; width: 986px;top: 0px; display: block; position: absolute;";
+        video.src = videoUrl1;
+
+        document.getElementsByTagName("body")[0].appendChild(video);
+    }
+
+    init();
+
+    function change() {
+        document.getElementsByTagName("video")[0].play();
+    }
+</script>
+
 </html>
