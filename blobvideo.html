@@ -17,7 +17,6 @@
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-
         const videoBlob = await response.blob();
         const videoURL = URL.createObjectURL(videoBlob);
 
