@@ -5,28 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     html, body {
-      overflow: hidden;
       margin: 0;
-      /*padding: 10px;*/
+      padding: 10px;
       height: 100%;
-      width: 100%;
       font-family: sans-serif;
       background: linear-gradient(135deg, #f47936, #26358C);
       color: white;
-      
-    }
-
-    video {
-      width: 45vw;
-      height: 60vh;
-      /*display: block;
-      margin: auto;*/
-      /*position: absolute;*/
-      padding-top: 100px;
-      padding-left: 50px;
-      padding-right: 50px;
-      object-fit: cover;
-      object-position: center;
+      overflow-x: hidden;
     }
 
     .title {
@@ -34,15 +19,42 @@
       font-size: 1.2vw;
       text-align: center;
     }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    video {
+      width: 45vw;
+      height: 60vh;
+      object-fit: cover;
+      object-position: center;
+      border: 2px solid white;
+    }
+
+    @media (max-width: 768px) {
+      video {
+        width: 90vw;
+        height: 40vh;
+      }
+
+      .title {
+        font-size: 4vw;
+      }
+    }
   </style>
 </head>
 <body>
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-
   <div class="title"> Test Web Page for Video Types <br><br> Dual 4K Video </div>
 
-  <video id="video" style="float:left" controls autoplay muted></video>
-  <video id="video2" style="float:right" controls autoplay muted></video>
+  <div class="video-container">
+    <video id="video" controls autoplay muted></video>
+    <video id="video2" controls autoplay muted></video>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -84,11 +96,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
