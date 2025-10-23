@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-      html, body {
+    html, body {
       margin: 0;
       padding: 10px;
       height: 100%;
@@ -15,17 +15,16 @@
     }
 
     video {
-        width: 45vw;
-        height: 60vh;
-        display: block;
-        margin: auto;
-        padding-top: 100px;
-        padding-left: 50px;
-        padding-right: 50px;
-        object-position: center;
-        object-fit: cover;
-        border: 2px solid red;
-      }
+      width: 45vw;
+      height: 60vh;
+      display: block;
+      margin: auto;
+      padding-top: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
+      object-fit: cover;
+      object-position: center;
+    }
 
     .title {
       margin-top: 1vh;
@@ -34,95 +33,51 @@
     }
   </style>
 </head>
-
-  
-
 <body>
- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-      <div class="title"> Test Web Page for Videos Looping <br> <br> Dual Video </div>
-        <video id="video" width="960" height="540" style="float:left"controls autoplay muted>
-      <!--  <source src="http://10.8.100.219:8008/fa62634c-9056-4f65-abbe-984259f865c3_stream/index.m3u8"> -->
-        
+  <div class="title"> Test Web Page for Video Types <br><br> Dual 4K Video </div>
 
-        </video>
-      
-         <video id="video2" width="960" height="540" style="float:right" controls autoplay muted>
-        <!--  <source src="http://10.8.100.219:8008/db956a49-6110-452f-97d0-3b8800cfd4e3_stream/index.m3u8"> -->
-        </video>
+  <video id="video" width="960" height="540" style="float:left" controls autoplay muted></video>
+  <video id="video2" width="960" height="540" style="float:right" controls autoplay muted></video>
 
-<!--         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var video = document.getElementById('video');
-                video.muted = true; // Ensure the video is muted for autoplay
-                video.play();
-            });
-        </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playlists = {
+        video: [
+          "http://10.8.100.219:8008/fa62634c-9056-4f65-abbe-984259f865c3_stream/index.m3u8",
+          "http://10.8.100.219:8008/another-video-1/index.m3u8",
+          "http://10.8.100.219:8008/another-video-2/index.m3u8"
+        ],
+        video2: [
+          "http://10.8.100.219:8008/db956a49-6110-452f-97d0-3b8800cfd4e3_stream/index.m3u8",
+          "http://10.8.100.219:8008/another-video-A/index.m3u8",
+          "http://10.8.100.219:8008/another-video-B/index.m3u8"
+        ]
+      };
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var video2 = document.getElementById('video2');
-                video.muted = true; // Ensure the video is muted for autoplay
-                video.play();
-            });
-        </script>
+      function setupLoopingVideo(videoId, sources) {
+        const video = document.getElementById(videoId);
+        let index = 0;
 
--->
+        function playNext() {
+          video.src = sources[index];
+          video.load();
+          video.play();
+        }
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const playlists = {
-      video: [
-        "http://10.8.100.219:8008/658f46a3-75e2-467e-838b-cd6f604605cc_stream/index.m3u8",
-        "http://10.8.100.219:8008/cc29dc8c-0d14-4e07-9414-2c6e7b91d2cc_stream/index.m3u8",
-        "http://10.8.100.219:8008/2b69e635-4f3e-471f-82f9-1b4d8405e453_stream/index.m3u8"
-      ],
-      video2: [
-        "http://10.8.100.219:8008/db956a49-6110-452f-97d0-3b8800cfd4e3_stream/index.m3u8",
-        "http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8",
-        "http://10.8.100.219:8008/dbd566c3-4de8-4bf9-bcd3-8f09756a4173_stream/index.m3u8"
-      ]
-    };
+        video.addEventListener('ended', () => {
+          index = (index + 1) % sources.length;
+          playNext();
+        });
 
-    function setupLoopingVideo(videoId, sources) {
-      const video = document.getElementById(videoId);
-      let index = 0;
-
-      function playNext() {
-        video.src = sources[index];
-        video.load();
-        video.play();
+        video.muted = true;
+        playNext();
       }
 
-      video.addEventListener('ended', () => {
-        index = (index + 1) % sources.length;
-        playNext();
-      });
-
-      video.muted = true;
-      playNext();
-    }
-
-    setupLoopingVideo('video', playlists.video);
-    setupLoopingVideo('video2', playlists.video2);
-  });
-</script>
-
-
-
-  
+      setupLoopingVideo('video', playlists.video);
+      setupLoopingVideo('video2', playlists.video2);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
