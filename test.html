@@ -6,9 +6,12 @@
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <div>
+      Video URL: <input type="text" id="videoUrl" name="videoUrl">
+    </div>
     <br />
     <div>
-      <video id="video" controls autoplay muted playsinline height="1080" width="1920" loop>
+      <video width="640" height="480" id="video" controls autoplay muted>
         <source src="https://raw.githubusercontent.com/emilytaylor0597/VideoTest/main/Astra10.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -23,16 +26,5 @@
         });
       });
     </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var video = document.getElementById('video');
-      video.play().catch(function(error) {
-        console.log('Autoplay failed:', error);
-      });
-    });
-  </script>
-
   </body>
 </html>
-
