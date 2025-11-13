@@ -6,54 +6,6 @@
 </head>
 <body>
   <h1>Blob Video Player</h1>
-  <video id="videoPlayer" controls autoplay muted playsinline height="1080" width="1920">
-    Your browser does not support the video tag.
-  </video>
-
-  <script>
-    const videoSources = [
-      "https://videos.pexels.com/video-files/33287255/14178954_1920_1080_25fps.mp4",
-      "https://videos.pexels.com/video-files/33287256/14178955_1920_1080_25fps.mp4"
-    ];
-
-    let currentIndex = 0;
-    const videoElement = document.getElementById("videoPlayer");
-
-    function loadVideo(index) {
-      fetch(videoSources[index])
-        .then(response => response.blob())
-        .then(blob => {
-          const blobUrl = URL.createObjectURL(blob);
-          videoElement.src = blobUrl;
-          videoElement.play();
-        })
-        .catch(error => {
-          console.error("Error loading video:", error);
-        });
-    }
-
-    // Load the first video
-    loadVideo(currentIndex);
-
-    // Switch videos every 10 seconds
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % videoSources.length; // alternate between 0 and 1
-      loadVideo(currentIndex);
-    }, 10000); // 10,000 ms = 10 seconds
-  </script>
-</body>
-</html>
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Blob Video Player</title>
-</head>
-<body>
-  <h1>Blob Video Player</h1>
   <video id="videoPlayer" controls autoplay muted playsinline height="1080" width="1920" loop>
     Your browser does not support the video tag.
   </video>
@@ -73,5 +25,5 @@
       });
   </script>
 </body>
-</html> -->
+</html>
 
