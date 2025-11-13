@@ -32,18 +32,17 @@
         });
     }
 
-    // Load the first video immediately
+    // Load the first video
     loadVideo(currentIndex);
 
-    // After 10 seconds, switch to the second video
-    setTimeout(() => {
-      currentIndex = 1; // second video
+    // Switch videos every 10 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % videoSources.length; // alternate between 0 and 1
       loadVideo(currentIndex);
     }, 10000); // 10,000 ms = 10 seconds
   </script>
 </body>
 </html>
-
 
 
 
