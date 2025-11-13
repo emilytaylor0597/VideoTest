@@ -13,7 +13,7 @@
   <script>
     const videoSources = [
       "https://videos.pexels.com/video-files/33287255/14178954_1920_1080_25fps.mp4",
-      "https://videos.pexels.com/video-files/34516949/14624479_1920_1080_30fps.mp4"
+      "https://videos.pexels.com/video-files/33287256/14178955_1920_1080_25fps.mp4"
     ];
 
     let currentIndex = 0;
@@ -32,14 +32,47 @@
         });
     }
 
-    // Load the first video
+    // Load the first video immediately
     loadVideo(currentIndex);
 
-    // When the video ends, switch to the next one
-    videoElement.addEventListener("ended", () => {
-      currentIndex = (currentIndex + 1) % videoSources.length; // Loop back to start
+    // After 10 seconds, switch to the second video
+    setTimeout(() => {
+      currentIndex = 1; // second video
       loadVideo(currentIndex);
-    });
+    }, 10000); // 10,000 ms = 10 seconds
   </script>
 </body>
 </html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blob Video Player</title>
+</head>
+<body>
+  <h1>Blob Video Player</h1>
+  <video id="videoPlayer" controls autoplay muted playsinline height="1080" width="1920" loop>
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    const videoUrl = "https://videos.pexels.com/video-files/33287255/14178954_1920_1080_25fps.mp4";
+
+    fetch(videoUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const videoElement = document.getElementById("videoPlayer");
+        const blobUrl = URL.createObjectURL(blob);
+        videoElement.src = blobUrl;
+      })
+      .catch(error => {
+        console.error("Error loading video:", error);
+      });
+  </script>
+</body>
+</html> -->
+
