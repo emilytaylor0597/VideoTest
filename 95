@@ -1,0 +1,90 @@
+
+<html>
+  <style>
+    .pressed_key {
+      color: white;
+      font-family: sans-serif;
+      font-size: 24pt;
+      vertical-align: center;
+      align: left;
+      background-color: black;
+      border: 2px white solid;
+      border-left: 0px;
+      border-radius: 0px 30px 30px 0px;
+      width: 450px;
+      display: flex;
+      align-items: center;
+    }
+    body {
+      background-color: #2d2e83;
+    }
+  </style>
+
+  <script type="text/javascript">
+    console.log("registered callback!");
+
+    var volume = 100;
+    var mute = false;
+
+    function handle_player_messages(msg) {
+      console.log(msg);
+      return;
+    }
+
+    if (typeof window.register_player_callback === "function") {
+
+      window.$ = function (selector, that) {
+        if (that == undefined) {
+          that = document;
+        }
+        return that.querySelector(selector);
+      };
+
+      window.register_player_callback(handle_player_messages);
+      console.log("registered callback!");
+      var message = {
+        type: "ready",
+      };
+      window.send_player_command(JSON.stringify(message));
+      
+      
+      // var message = {
+      //   type: "play",
+      //   url: "udp://227.1.0.1:5000",
+      //   loop: true
+      // };
+      
+      // The video source is BBC One HD from a gateway on the manufacturing network.  Alien: "http://10.0.0.5:8008/1bf2b388-4668-4632-954d-a1ed14d3cdee_stream/index.m3u8"
+
+      var message = {
+        type: "play",
+        loop: true,
+        url:"http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8" // file://media/card/dr/index.m3u8",
+      };
+
+      window.send_player_command(JSON.stringify(message));
+
+      message = {
+        type: "position",
+        x: 0,
+        y: 0,
+        width: 1920,
+        height: 1080,
+        zindex: 1,
+      };
+      window.send_player_command(JSON.stringify(message));
+
+      var message = {
+        type: "volume",
+        level: 100,
+        muted: false
+      };
+      window.send_player_command(JSON.stringify(message));
+
+    } else {
+      console.log("No register function available");
+    }
+  </script>
+  <body style="margin: 0px">
+  </body>
+</html>
