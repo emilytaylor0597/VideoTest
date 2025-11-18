@@ -46,7 +46,7 @@
       };
       window.send_player_command(JSON.stringify(message));
 	  
-	  var relativePath = "http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8";	  
+	  var relativePath = "http://10.8.220.21:8080/hls/ethls/index.m3u8";	  
 	  var absolutePath = new URL(relativePath, window.location.href).href;
 
 	  // Log the full URL to the console
@@ -55,7 +55,7 @@
       var message = {
         type: "play",
         loop: true,
-        url:"http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8" // file://media/card/dr/index.m3u8"
+        url:"http://10.8.220.21:8080/hls/ethls/index.m3u8" // file://media/card/dr/index.m3u8"
       };
 
       window.send_player_command(JSON.stringify(message));
