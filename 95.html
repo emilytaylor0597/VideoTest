@@ -45,20 +45,17 @@
         type: "ready",
       };
       window.send_player_command(JSON.stringify(message));
-      
-      
-      // var message = {
-      //   type: "play",
-      //   url: "udp://227.1.0.1:5000",
-      //   loop: true
-      // };
-      
-      // The video source is BBC One HD from a gateway on the manufacturing network.  Alien: "http://10.0.0.5:8008/1bf2b388-4668-4632-954d-a1ed14d3cdee_stream/index.m3u8"
+	  
+	  var relativePath = "http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8";	  
+	  var absolutePath = new URL(relativePath, window.location.href).href;
 
+	  // Log the full URL to the console
+	  console.log('Resolved URL:', absolutePath);
+      
       var message = {
         type: "play",
         loop: true,
-        url:"http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8" // file://media/card/dr/index.m3u8",
+        url:"http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8" // file://media/card/dr/index.m3u8"
       };
 
       window.send_player_command(JSON.stringify(message));
