@@ -1,4 +1,4 @@
-<html>
+<!--<html>
   <style>
     .pressed_key {
       color: white;
@@ -83,4 +83,78 @@
   </script>
   <body style="margin: 0px">
   </body>
+</html> -->
+<!DOCTYPE html>
+<!-- plays a fullscreen video for MP95 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+    console.log("registered callback!");
+
+    var volume = 100;
+    var mute = false;
+
+    function handle_player_messages(msg) {
+      return;
+    }
+
+    if (typeof window.register_player_callback === "function") {
+
+      window.$ = function (selector, that) {
+        if (that == undefined) {
+          that = document;
+        }
+        return that.querySelector(selector);
+      };
+
+      window.register_player_callback(handle_player_messages);
+      console.log("registered callback!");
+      var message = {
+        type: "ready",
+      };
+      window.send_player_command(JSON.stringify(message));
+      message = {
+        type: "play",
+        loop: false,
+        url: "http://10.8.100.219:8008/5317c4ee-9d5e-4e7f-a2cc-700db0d3a06c_stream/index.m3u8",
+      };
+      window.send_player_command(JSON.stringify(message));
+
+      message = {
+        type: "position",
+        x: 0,
+        y: 0,
+        width: 1920,
+        height: 1080,
+        zindex: 1,
+      };
+      window.send_player_command(JSON.stringify(message));
+    } else {
+      console.log("No register function available");
+    }
+  </script>
+</body>
 </html>
+
